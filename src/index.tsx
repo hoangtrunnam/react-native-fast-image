@@ -120,6 +120,12 @@ export interface FastImageProps extends AccessibilityProps, ViewProps {
     tintColor?: ColorValue
 
     /**
+     * @platform ios. ios 13+ only
+     * create a thumbnail from local file with specific size 60x90
+     */
+    enableQLThumbnailGenerator?: boolean
+
+    /**
      * A unique identifier for this element to be used in UI Automation testing scripts.
      */
     testID?: string
@@ -167,6 +173,7 @@ function FastImageBase({
     children,
     // eslint-disable-next-line no-shadow
     resizeMode = 'cover',
+    enableQLThumbnailGenerator = false,
     forwardedRef,
     ...props
 }: FastImageProps & { forwardedRef: React.Ref<any> }) {
@@ -211,6 +218,7 @@ function FastImageBase({
                 onFastImageError={onError}
                 onFastImageLoadEnd={onLoadEnd}
                 resizeMode={resizeMode}
+                enableQLThumbnailGenerator={enableQLThumbnailGenerator}
             />
             {children}
         </View>
